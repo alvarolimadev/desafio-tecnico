@@ -26,7 +26,13 @@
 
           <div>
             <label>CPF</label>
-            <input v-model="form.cpf" placeholder="Apenas números" required />
+            <input
+              :value="maskCPF(form.cpf)"
+              @input="form.cpf = maskCPF($event.target.value)"
+              maxlength="14"
+              placeholder="000.000.000-00"
+              required
+            />
           </div>
         </div>
 
@@ -95,7 +101,12 @@
 
             <div>
               <label>CEP</label>
-              <input v-model="addr.zip" placeholder="CEP" />
+              <input 
+                :value="maskCEP(addr.zip)"
+                @input="addr.zip = maskCEP($event.target.value)"
+                maxlength="9"
+                placeholder="00000-000"
+              />
             </div>
           </div>
 
@@ -129,6 +140,7 @@
   import { ref, onMounted } from "vue";
   import api from "@/services/api";
   import { useRoute, useRouter } from "vue-router";
+  import { maskCPF, maskCEP } from "@/assets/index.js";
 
   const route = useRoute();
   const router = useRouter();
@@ -206,7 +218,7 @@
 
     } catch (err) {
       console.error(err);
-      alert("Erro ao salvar usuário");
+      alert(err.response.data.message);
     }
   }
 </script>

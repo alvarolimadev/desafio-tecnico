@@ -17,7 +17,7 @@
 
         <div>
           <label>CPF</label>
-          <p>{{ user.cpf }}</p>
+          <p>{{ maskCPF(user.cpf) }}</p>
         </div>
 
         <div>
@@ -75,7 +75,7 @@
 
           <div>
             <label>CEP</label>
-            <p>{{ addr.zip }}</p>
+            <p>{{ maskCEP(addr.zip) }}</p>
           </div>
 
           <div>
@@ -93,6 +93,7 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import api from "@/services/api";
+import { maskCPF, maskCEP } from "@/assets/index.js";
 
 const route = useRoute();
 const user = ref({});

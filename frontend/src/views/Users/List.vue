@@ -18,7 +18,13 @@
 
         <div class="field">
           <label>CPF</label>
-          <input v-model="filters.cpf" placeholder="CPF" />
+          <input
+            :value="filters.cpf"
+            @input="filters.cpf = maskCPF($event.target.value)"
+            maxlength="14"
+            placeholder="CPF"
+            required
+          />
         </div>
 
         <div class="field">
@@ -55,7 +61,7 @@
         <tbody>
           <tr v-for="u in users" :key="u.id">
             <td>{{ u.name }}</td>
-            <td>{{ u.cpf }}</td>
+            <td>{{ maskCPF(u.cpf) }}</td>
             <td>{{ u.email }}</td>
             <td>{{ u.profile?.name }}</td>
             <td class="actions">
@@ -80,6 +86,7 @@
 <script setup>
   import { ref } from 'vue';
   import api from '@/services/api';
+  import { maskCPF } from "@/assets/index.js";
 
   const users = ref([]);
   const meta = ref({});
