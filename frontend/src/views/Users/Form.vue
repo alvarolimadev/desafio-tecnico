@@ -152,7 +152,7 @@
     name: "",
     email: "",
     cpf: "",
-    profile_id: null,
+    profile_id: "",
     addresses: []
   });
 
@@ -208,6 +208,10 @@
   // SALVAR
   async function submit() {
     try {
+      if (form.value.addresses.length === 0) {
+        alert("Adicione pelo menos um endereço.");
+        return;
+      }
       if (isEdit) {
         await api.put(`/users/${route.params.id}`, form.value);
       } else {
