@@ -107,6 +107,7 @@
     if (!confirm('Excluir usuário?')) return;
     await api.delete(`/users/${id}`);
     fetch(meta.value.current_page || 1);
+    alert('Usuário excluído com sucesso.');
   }
 
   fetch();
