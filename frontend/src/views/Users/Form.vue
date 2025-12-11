@@ -104,6 +104,7 @@
               <input 
                 :value="maskCEP(addr.zip)"
                 @input="addr.zip = maskCEP($event.target.value)"
+                @blur="preencherEndereco(idx)"
                 maxlength="9"
                 placeholder="00000-000"
               />
@@ -141,6 +142,7 @@
   import api from "@/services/api";
   import { useRoute, useRouter } from "vue-router";
   import { maskCPF, maskCEP } from "@/assets/index.js";
+  import { buscarCEP } from "@/services/cepService";
 
   const route = useRoute();
   const router = useRouter();
@@ -155,6 +157,27 @@
     profile_id: "",
     addresses: []
   });
+
+  async function preencherEndereco(index) {
+    const cep = form.value.addresses[index].zip;
+
+    const dados = await buscarCEP(cep);
+
+    if (!dados) {
+      alert("CEP inválido ou não encontrado.");
+      return;
+    }
+
+    form.value.addresses[index] = {
+      ...form.value.addresses[index],
+      street: dados.street,
+      neighborhood: dados.neighborhood,
+      city: dados.city,
+      state: dados.state,
+      country: dados.country,
+      zip: dados.zip
+    };
+  }
 
   // Carregar perfis e usuário (em caso de edição)
   onMounted(async () => {
