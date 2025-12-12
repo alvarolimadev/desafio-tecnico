@@ -1,4 +1,4 @@
-# Projeto Laravel com Docker
+# Projeto Laravel + VueJS + Vite com Docker
 
 Este é um projeto Laravel + VueJS + Vite configurado para rodar em um ambiente Docker. Este guia irá ajudá-lo a configurar e iniciar o projeto rapidamente.
 
