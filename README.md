@@ -15,8 +15,9 @@ Este é um projeto Laravel + VueJS + Vite configurado para rodar em um ambiente 
     cd desafio-tecnico
     ```
 
-2. Copie o arquivo de ambiente de exemplo para criar o seu próprio arquivo .env:
+2. Copie o arquivo de ambiente de exemplo para criar o seu próprio arquivo .env do backend:
     ```bash
+    cd/backend
     cp .env.example .env
     ```
 
@@ -38,6 +39,7 @@ Este é um projeto Laravel + VueJS + Vite configurado para rodar em um ambiente 
     ```bash
     cd frontend
     npm install
+    sudo rm -rf dist/
     npm run build
     ```
 
