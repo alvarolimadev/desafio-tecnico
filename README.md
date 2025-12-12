@@ -15,18 +15,29 @@ Este é um projeto Laravel + VueJS + Vite configurado para rodar em um ambiente 
     cd desafio-tecnico
     ```
 
-2. Inicie os contêineres Docker usando o Docker Compose:
+2. Copie o arquivo de ambiente de exemplo para criar o seu próprio arquivo .env:
     ```bash
-    docker compose build --no-cache
-    docker-compose up -d
+    cp .env.example .env
     ```
-3. Execute as migrações do banco de dados com seed:
+
+3. Inicie os contêineres Docker usando o Docker Compose:
+    ```bash
+    docker compose up -d --build
+    ```
+
+4. Instale as dependências do Composer dentro do contêiner do backend:
+    ```bash
+    docker exec -it backend composer install
+    ```
+
+5. Execute as migrações do banco de dados com seed:
     ```bash
     docker exec -it backend php artisan migrate --seed
     ```
-4. Fazer build do frontend no Nginx:
+6. Fazer build do frontend no Nginx:
     ```bash
     cd frontend
+    npm install
     npm run build
     ```
 
