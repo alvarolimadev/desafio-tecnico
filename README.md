@@ -17,7 +17,7 @@ Este é um projeto Laravel + VueJS + Vite configurado para rodar em um ambiente 
 
 2. Copie o arquivo de ambiente de exemplo para criar o seu próprio arquivo .env do backend:
     ```bash
-    cd/backend
+    cd backend
     cp .env.example .env
     ```
 
