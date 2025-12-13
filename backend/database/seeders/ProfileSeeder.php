@@ -7,10 +7,21 @@ use App\Models\Profile;
 
 class ProfileSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
-        Profile::create(['name' => 'Administrador', 'description' => 'Acesso total']);
-        Profile::create(['name' => 'Gerente', 'description' => 'Gerencia usuários']);
-        Profile::create(['name' => 'Usuário', 'description' => 'Acesso básico']);
+        Profile::firstOrCreate(
+            ['name' => 'Administrador'],
+            ['description' => 'Acesso total']
+        );
+
+        Profile::firstOrCreate(
+            ['name' => 'Gerente'],
+            ['description' => 'Acesso gerencial']
+        );
+
+        Profile::firstOrCreate(
+            ['name' => 'Usuário'],
+            ['description' => 'Acesso básico']
+        );
     }
 }
