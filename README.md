@@ -1,6 +1,6 @@
-# Projeto Laravel + VueJS + Vite com Docker
+# Projeto Laravel + VueJS com Docker
 
-Este é um projeto Laravel + VueJS + Vite configurado para rodar em um ambiente Docker. Este guia irá ajudá-lo a configurar e iniciar o projeto rapidamente.
+Este é um projeto Laravel + VueJS configurado para rodar em um ambiente Docker. Este guia irá ajudá-lo a configurar e iniciar o projeto rapidamente.
 
 ## Requisitos
 
@@ -15,32 +15,9 @@ Este é um projeto Laravel + VueJS + Vite configurado para rodar em um ambiente 
     cd desafio-tecnico
     ```
 
-2. Copie o arquivo de ambiente de exemplo para criar o seu próprio arquivo .env do backend:
+2. Execute o script `docker-run.sh` para construir e iniciar os contêineres Docker:
     ```bash
-    cd backend
-    cp .env.example .env
-    ```
-
-3. Inicie os contêineres Docker usando o Docker Compose:
-    ```bash
-    docker compose up -d --build
-    ```
-
-4. Instale as dependências do Composer dentro do contêiner do backend:
-    ```bash
-    docker exec -it backend composer install
-    ```
-
-5. Execute as migrações do banco de dados com seed:
-    ```bash
-    docker exec -it backend php artisan migrate --seed
-    ```
-6. Fazer build do frontend no Nginx:
-    ```bash
-    cd frontend
-    npm install
-    sudo rm -rf dist/
-    npm run build
+    ./docker-run.sh
     ```
 
 ## Acessando a Aplicação
