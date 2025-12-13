@@ -10,14 +10,14 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        $u1 = User::create([
+        $u1 = User::firstOrCreate([
             'name' => 'João Silva',
             'email' => 'joao@example.com',
             'cpf' => '12345678901',
             'profile_id' => 1
         ]);
 
-        $u2 = User::create([
+        $u2 = User::firstOrCreate([
             'name' => 'Maria Souza',
             'email' => 'maria@example.com',
             'cpf' => '98765432100',
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         ]);
 
         // Criar endereços e vincular
-        $a1 = Address::create([
+        $a1 = Address::firstOrCreate([
             'street'       => 'Rua das Flores',
             'number'       => '100',
             'complement'   => 'Apto 12',
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'country'      => 'Brasil'
         ]);
 
-        $a2 = Address::create([
+        $a2 = Address::firstOrCreate([
             'street'       => 'Avenida Paulista',
             'number'       => '2000',
             'complement'   => '10º andar',
