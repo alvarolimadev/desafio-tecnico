@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
-
+use App\Rules\CpfValid;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUserRequest extends FormRequest
@@ -17,7 +17,7 @@ class StoreUserRequest extends FormRequest
             // Usuário
             'name'       => ['required', 'string', 'min:3', 'max:150'],
             'email'      => ['required', 'email', 'max:150', 'unique:users,email'],
-            'cpf'        => ['required', 'digits:11', 'unique:users,cpf'],
+            'cpf'        => ['required', 'digits:11', 'unique:users,cpf', new CpfValid],
             'profile_id' => ['required', 'exists:profiles,id'],
 
             // Endereços (array)
