@@ -168,6 +168,11 @@
       return;
     }
 
+    if (!isValidCPF(form.cpf)) {
+      alert('CPF inválido');
+      return;
+    }
+
     form.value.addresses[index] = {
       ...form.value.addresses[index],
       street: dados.street,
