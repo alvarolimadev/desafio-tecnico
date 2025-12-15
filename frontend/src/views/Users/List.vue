@@ -85,6 +85,7 @@
 
 <script setup>
   import { ref } from 'vue';
+  import { isValidCPF } from '../../assets';
   import api from '@/services/api';
   import { maskCPF } from "@/assets/index.js";
 
@@ -99,7 +100,14 @@
     meta.value = res.data.meta || {};
   }
 
-  function search() { fetch(1); }
+  function search() {
+    if (!isValidCPF(filters.value.cpf)) {
+      alert('CPF inválido');
+      return;
+    }
+    fetch(1);
+  }
+  
   function reset() { filters.value = { name:'', cpf:'', date_from:'', date_to:'' }; fetch(1); }
   function pageChanged(page) { fetch(page); }
 

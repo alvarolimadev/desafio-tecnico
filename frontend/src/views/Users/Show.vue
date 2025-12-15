@@ -99,6 +99,10 @@ const route = useRoute();
 const user = ref({});
 
 onMounted(async () => {
+  if (!isValidCPF(form.cpf)) {
+    alert('CPF inválido');
+    return;
+  }
   const response = await api.get(`/users/${route.params.id}`);
   user.value = response.data.data;
 });
