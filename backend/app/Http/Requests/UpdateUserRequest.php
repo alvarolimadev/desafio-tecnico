@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Requests;
-
+use App\Rules\CpfValid;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUserRequest extends FormRequest
@@ -19,8 +20,13 @@ class UpdateUserRequest extends FormRequest
 
             // Usuário
             'name'       => ['required', 'string', 'min:3', 'max:150'],
-            'email'      => ['required', 'email', 'max:150', "unique:users,email,{$id}"],
-            'cpf'        => ['required', 'digits:11', "unique:users,cpf,{$id}"],
+            'email'      => ['required', 'email', 'max:150', "unique:users,email,{$id}"],            
+            'cpf' => [
+                'required',
+                'digits:11',
+                Rule::unique('users', 'cpf')->ignore($this->user),
+                new CpfValid
+            ],
             'profile_id' => ['required', 'exists:profiles,id'],
 
             // Endereços
